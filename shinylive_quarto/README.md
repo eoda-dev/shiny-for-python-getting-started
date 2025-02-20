@@ -4,9 +4,11 @@
 # pip install uv
 uv sync
 
-quarto add quarto-ext/shinylive
+quarto add --no-prompt quarto-ext/shinylive
 
-quarto render basic_app.qmd
+quarto render index.qmd
 
 python -m http.server
 ```
+
+Then navigate to [localhost:8000](http://localhost:8000)

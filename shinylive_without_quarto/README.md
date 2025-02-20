@@ -1,5 +1,7 @@
 # Shinylive without quarto
 
+See also [https://shiny.posit.co/py/docs/shinylive.html](https://shiny.posit.co/py/docs/shinylive.html).
+
 Run app:
 
 ```bash

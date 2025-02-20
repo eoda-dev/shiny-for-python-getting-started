@@ -1,0 +1,14 @@
+[project]
+name = "shinylive-without-quarto"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "faicons>=0.2.2",
+    "pandas>=2.2.3",
+    "seaborn>=0.13.2",
+    "shiny>=1.2.1",
+    "shinylive>=0.7.3",
+    "uvicorn>=0.34.0",
+]

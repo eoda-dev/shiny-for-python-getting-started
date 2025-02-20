@@ -11,4 +11,4 @@ dependencies = [
 ]
 
 [tool.uv.workspace]
-members = ["routes_example_app", "shinylive_quarto"]
+members = ["routes_example_app", "shinylive_quarto", "shinylive_without_quarto"]

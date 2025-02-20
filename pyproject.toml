@@ -1,0 +1,9 @@
+[project]
+name = "shiny-for-python"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "shiny>=1.2.1",
+]

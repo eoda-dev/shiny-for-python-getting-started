@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from shiny import App, ui
+from shiny import App, render, ui
 from starlette.applications import Starlette
 from starlette.routing import Mount
 
@@ -13,7 +13,21 @@ def index():
 
 
 # ---
-app_shiny = App(ui.page_fluid("hello from shiny!"), None)
+shiny_ui = ui.page_fluid(
+    ui.panel_title("Hello Shiny!"),
+    ui.input_slider("n", "N", 0, 100, 20),
+    ui.output_text_verbatim("txt"),
+)
+
+
+def shiny_server(input, output, session):
+    @render.text
+    def txt():
+        print(session.http_conn.headers["host"])
+        return f"n*2 is {input.n() * 2}"
+
+
+app_shiny = App(shiny_ui, shiny_server)
 
 # ---
 routes = [Mount("/api", app=app_fastapi), Mount("/", app=app_shiny)]

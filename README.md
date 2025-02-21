@@ -49,10 +49,27 @@ gunicorn basic_app_core.app:app -w 4 -k uvicorn.workers.UvicornWorker
 * [shinylive_quarto](shinylive_quarto)
 * [shinylive_without_quarto](shinylive_without_quarto)
 
-## Docker
+## Docker Image Releases
+
+### Shinylive inside nginx
 
 ```bash
 docker pull ghcr.io/eoda-dev/shinylive-nginx:latest
 
 docker run --rm -p 8085:80 ghcr.io/eoda-dev/shinylive-nginx:latest
 ```
+
+Navigate to [http://localhost:8085/shinylive-app/](http://localhost:8085/shinylive-app/)
+
+### Shiny and FastAPI in one app
+
+```bash
+docker pull ghcr.io/eoda-dev/shiny-meets-fastapi:latest
+
+docker run -p 3333:3333 --rm ghcr.io/eoda-dev/shiny-meets-fastapi:latest
+```
+
+Navigate to:
+
+* Shiny app: [http://localhost:3333](http://localhost:3333)
+* FastAPI REST API docs: [http://localhost:3333/api/docs](http://localhost:3333/api/docs)

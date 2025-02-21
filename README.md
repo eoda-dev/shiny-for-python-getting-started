@@ -41,3 +41,18 @@ shiny create -d basic_app_core -t basic-app -m core
 gunicorn basic_app_core.app:app -w 4 -k uvicorn.workers.UvicornWorker
 ```
 
+## Examples
+
+* [basic_app](basic_app)
+* [basic_app_core](basic_app_core)
+* [routes_example_app](routes_example_app)
+* [shinylive_quarto](shinylive_quarto)
+* [shinylive_without_quarto](shinylive_without_quarto)
+
+## Docker
+
+```bash
+docker pull ghcr.io/eoda-dev/shinylive-nginx:latest
+
+docker run --rm -p 8085:80 ghcr.io/eoda-dev/shinylive-nginx:latest
+```

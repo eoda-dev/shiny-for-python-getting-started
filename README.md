@@ -25,9 +25,13 @@ shiny create -d basic_app -t basic-app -m express
 shiny run basic_app/app.py
 ```
 
-## Templates
+## Use templates from GitHub
 
 * [posit-dev/py-shiny-templates](https://github.com/posit-dev/py-shiny-templates)
+
+```bash
+shiny create -g posit-dev/py-shiny-templates -t map-distance
+```
 
 ## Deployment
 

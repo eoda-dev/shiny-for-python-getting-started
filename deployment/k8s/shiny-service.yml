@@ -1,0 +1,55 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: shiny-service
+  namespace: eoda
+  labels:
+    app: shiny-app
+spec:
+  selector:
+    app: shiny-app
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 3333
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shiny-deployment
+  namespace: eoda
+spec:
+  selector:
+    matchLabels:
+      app: shiny-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: shiny-app
+    spec:
+      containers:
+        - name: shiny-app
+          image: ghcr.io/eoda-dev/shiny-meets-fastapi:latest
+          # command: [".venv/bin/uvicorn"]
+          # args: ["--host", "0.0.0.0", "--port", "3333" , "app:app"]
+          ports:
+            - containerPort: 3333
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: eoda
+  name: shiny-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shiny-service
+                port:
+                  number: 80

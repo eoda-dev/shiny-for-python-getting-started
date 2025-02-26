@@ -1,0 +1,6 @@
+site/
+Dockerfile
+requirements.txt
+__pycache__/
+.venv/
+

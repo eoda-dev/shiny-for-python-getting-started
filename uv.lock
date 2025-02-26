@@ -1,19 +1,29 @@
 version = 1
 requires-python = ">=3.9"
 resolution-markers = [
-    "python_full_version >= '3.12' and sys_platform != 'emscripten'",
-    "python_full_version >= '3.12' and sys_platform == 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform != 'emscripten'",
-    "python_full_version < '3.10' and sys_platform != 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform == 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform == 'emscripten'",
-    "python_full_version < '3.10' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 
 [manifest]
 members = [
     "app-from-gh-template",
+    "basic-app",
+    "basic-app-core",
     "routes-example-app",
     "shiny-for-python",
     "shinylive-quarto",
@@ -109,6 +119,52 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/4a/e7/82da0a03e7ba5141f05cce0d302e6eed121ae055e0456ca228bf693984bc/asttokens-3.0.0.tar.gz", hash = "sha256:0dcd8baa8d62b0c1d118b399b2ddba3c4aff271d0d7a9e0d4c1681c79035bbc7", size = 61978 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/25/8a/c46dcc25341b5bce5472c718902eb3d38600a903b14fa6aeecef3f21a46f/asttokens-3.0.0-py3-none-any.whl", hash = "sha256:e3078351a059199dd5138cb1c706e6430c05eff2ff136af5eb4790f9d28932e2", size = 26918 },
+]
+
+[[package]]
+name = "basic-app"
+version = "0.1.0"
+source = { virtual = "basic_app" }
+dependencies = [
+    { name = "jinja2" },
+    { name = "pandas" },
+    { name = "plotly" },
+    { name = "requests" },
+    { name = "shiny" },
+    { name = "shinywidgets" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "jinja2", specifier = ">=3.1.5" },
+    { name = "pandas", specifier = ">=2.2.3" },
+    { name = "plotly", specifier = ">=6.0.0" },
+    { name = "requests", specifier = ">=2.32.3" },
+    { name = "shiny", specifier = ">=1.2.1" },
+    { name = "shinywidgets", specifier = ">=0.5.1" },
+]
+
+[[package]]
+name = "basic-app-core"
+version = "0.1.0"
+source = { virtual = "basic_app_core" }
+dependencies = [
+    { name = "jinja2" },
+    { name = "pandas" },
+    { name = "plotly" },
+    { name = "requests" },
+    { name = "shiny" },
+    { name = "shinywidgets" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "jinja2", specifier = ">=3.1.5" },
+    { name = "pandas", specifier = ">=2.2.3" },
+    { name = "plotly", specifier = ">=6.0.0" },
+    { name = "requests", specifier = ">=2.32.3" },
+    { name = "shiny", specifier = ">=1.2.1" },
+    { name = "shinywidgets", specifier = ">=0.5.1" },
 ]
 
 [[package]]
@@ -220,7 +276,7 @@ name = "click"
 version = "8.1.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "colorama", marker = "platform_system == 'Windows'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/b9/2e/0090cbf739cee7d23781ad4b89a9894a41538e4fcf4c31dcdd705b78eb8b/click-8.1.8.tar.gz", hash = "sha256:ed53c9d8990d83c2a27deae68e4ee337473f6330c040a31d4225c9574d16096a", size = 226593 }
 wheels = [
@@ -253,8 +309,10 @@ name = "contourpy"
 version = "1.3.0"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version < '3.10' and sys_platform != 'emscripten'",
-    "python_full_version < '3.10' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 dependencies = [
     { name = "numpy", version = "2.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
@@ -332,12 +390,18 @@ name = "contourpy"
 version = "1.3.1"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.12' and sys_platform != 'emscripten'",
-    "python_full_version >= '3.12' and sys_platform == 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform == 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 dependencies = [
     { name = "numpy", version = "2.2.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
@@ -616,8 +680,10 @@ name = "ipython"
 version = "8.18.1"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version < '3.10' and sys_platform != 'emscripten'",
-    "python_full_version < '3.10' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 dependencies = [
     { name = "colorama", marker = "python_full_version < '3.10' and sys_platform == 'win32'" },
@@ -642,12 +708,18 @@ name = "ipython"
 version = "8.32.0"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.12' and sys_platform != 'emscripten'",
-    "python_full_version >= '3.12' and sys_platform == 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform == 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 dependencies = [
     { name = "colorama", marker = "python_full_version >= '3.10' and sys_platform == 'win32'" },
@@ -745,8 +817,10 @@ name = "kiwisolver"
 version = "1.4.7"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version < '3.10' and sys_platform != 'emscripten'",
-    "python_full_version < '3.10' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/85/4d/2255e1c76304cbd60b48cee302b66d1dde4468dc5b1160e4b7cb43778f2a/kiwisolver-1.4.7.tar.gz", hash = "sha256:9893ff81bd7107f7b685d3017cc6583daadb4fc26e4a888350df530e41980a60", size = 97286 }
 wheels = [
@@ -849,12 +923,18 @@ name = "kiwisolver"
 version = "1.4.8"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.12' and sys_platform != 'emscripten'",
-    "python_full_version >= '3.12' and sys_platform == 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform == 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/82/59/7c91426a8ac292e1cdd53a63b6d9439abd573c875c3f92c146767dd33faf/kiwisolver-1.4.8.tar.gz", hash = "sha256:23d5f023bdc8c7e54eb65f03ca5d5bb25b601eac4d7f1a042888a1f45237987e", size = 97538 }
 wheels = [
@@ -1045,8 +1125,10 @@ name = "matplotlib"
 version = "3.9.4"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version < '3.10' and sys_platform != 'emscripten'",
-    "python_full_version < '3.10' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 dependencies = [
     { name = "contourpy", version = "1.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
@@ -1109,12 +1191,18 @@ name = "matplotlib"
 version = "3.10.0"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.12' and sys_platform != 'emscripten'",
-    "python_full_version >= '3.12' and sys_platform == 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform == 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 dependencies = [
     { name = "contourpy", version = "1.3.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
@@ -1211,8 +1299,10 @@ name = "numpy"
 version = "2.0.2"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version < '3.10' and sys_platform != 'emscripten'",
-    "python_full_version < '3.10' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version < '3.10' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version < '3.10' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a9/75/10dd1f8116a8b796cb2c737b674e02d02e80454bda953fa7e65d8c12b016/numpy-2.0.2.tar.gz", hash = "sha256:883c987dee1880e2a864ab0dc9892292582510604156762362d9326444636e78", size = 18902015 }
 wheels = [
@@ -1267,12 +1357,18 @@ name = "numpy"
 version = "2.2.3"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.12' and sys_platform != 'emscripten'",
-    "python_full_version >= '3.12' and sys_platform == 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform != 'emscripten'",
-    "python_full_version == '3.11.*' and sys_platform == 'emscripten'",
-    "python_full_version == '3.10.*' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version >= '3.12' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform != 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.11.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system != 'Emscripten' and sys_platform == 'emscripten'",
+    "python_full_version == '3.10.*' and platform_system == 'Emscripten' and sys_platform == 'emscripten'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/fb/90/8956572f5c4ae52201fdec7ba2044b2c882832dcec7d5d0922c9e9acf2de/numpy-2.2.3.tar.gz", hash = "sha256:dbdc15f0c81611925f382dfa97b3bd0bc2c1ce19d4fe50482cb0ddc12ba30020", size = 20262700 }
 wheels = [
@@ -1579,6 +1675,19 @@ wheels = [
 ]
 
 [[package]]
+name = "plotly"
+version = "6.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "narwhals" },
+    { name = "packaging" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/9c/80/761c14012d6daf18e12b6d1e4f6b218e999bcceb694d7a9b180154f9e4db/plotly-6.0.0.tar.gz", hash = "sha256:c4aad38b8c3d65e4a5e7dd308b084143b9025c2cc9d5317fc1f1d30958db87d3", size = 8111782 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0e/77/a946f38b57fb88e736c71fbdd737a1aebd27b532bda0779c137f357cf5fc/plotly-6.0.0-py3-none-any.whl", hash = "sha256:f708871c3a9349a68791ff943a5781b1ec04de7769ea69068adcd9202e57653a", size = 14805949 },
+]
+
+[[package]]
 name = "prompt-toolkit"
 version = "3.0.50"
 source = { registry = "https://pypi.org/simple" }
@@ -1827,7 +1936,7 @@ name = "questionary"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "prompt-toolkit", marker = "sys_platform != 'emscripten'" },
+    { name = "prompt-toolkit", marker = "platform_system != 'Emscripten'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a8/b8/d16eb579277f3de9e56e5ad25280fab52fc5774117fb70362e8c2e016559/questionary-2.1.0.tar.gz", hash = "sha256:6302cdd645b19667d8f6e6634774e9538bfcd1aad9be287e743d96cacaf95587", size = 26775 }
 wheels = [
@@ -1898,7 +2007,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "appdirs" },
     { name = "asgiref" },
-    { name = "click", marker = "sys_platform != 'emscripten'" },
+    { name = "click", marker = "platform_system != 'Emscripten'" },
     { name = "htmltools" },
     { name = "linkify-it-py" },
     { name = "markdown-it-py" },
@@ -1906,14 +2015,14 @@ dependencies = [
     { name = "narwhals" },
     { name = "orjson" },
     { name = "packaging" },
-    { name = "prompt-toolkit", marker = "sys_platform != 'emscripten'" },
+    { name = "prompt-toolkit", marker = "platform_system != 'Emscripten'" },
     { name = "python-multipart" },
-    { name = "questionary", marker = "sys_platform != 'emscripten'" },
+    { name = "questionary", marker = "platform_system != 'Emscripten'" },
     { name = "setuptools", marker = "python_full_version >= '3.12'" },
     { name = "starlette" },
     { name = "typing-extensions" },
-    { name = "uvicorn", marker = "sys_platform != 'emscripten'" },
-    { name = "watchfiles", marker = "sys_platform != 'emscripten'" },
+    { name = "uvicorn", marker = "platform_system != 'Emscripten'" },
+    { name = "watchfiles", marker = "platform_system != 'Emscripten'" },
     { name = "websockets" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/0a/1e/7fb6b23a09f85b2d7fa81ae9b0992dd817e8fcaf7218c86a4641ab6d896d/shiny-1.2.1.tar.gz", hash = "sha256:69a4db338710d87fad0ae50e04b2d70f6b7183edb846db4fa90cd7456091feee", size = 5205474 }
@@ -2127,7 +2236,7 @@ name = "watchfiles"
 version = "1.0.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "anyio", marker = "sys_platform != 'emscripten'" },
+    { name = "anyio", marker = "platform_system != 'Emscripten'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/f5/26/c705fc77d0a9ecdb9b66f1e2976d95b81df3cae518967431e7dbf9b5e219/watchfiles-1.0.4.tar.gz", hash = "sha256:6ba473efd11062d73e4f00c2b730255f9c1bdd73cd5f9fe5b5da8dbd4a717205", size = 94625 }
 wheels = [

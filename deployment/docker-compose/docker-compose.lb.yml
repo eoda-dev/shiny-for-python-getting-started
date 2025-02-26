@@ -1,0 +1,15 @@
+services:
+  nginx:
+    image: nginx:latest
+    depends_on: 
+      - shiny_app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./files/nginx.conf:/etc/nginx/nginx.conf:ro
+  shiny_app:
+    # container_name: shiny_app
+    image: ghcr.io/eoda-dev/shiny-meets-fastapi:latest
+    restart: always
+    deploy:
+      replicas: 2

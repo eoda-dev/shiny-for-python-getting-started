@@ -27,9 +27,12 @@ shiny run basic_app/app.py
 
 ## Use templates from GitHub
 
+* [eoda-dev/py-shiny-templates](https://github.com/eoda-dev/py-shiny-templates)
 * [posit-dev/py-shiny-templates](https://github.com/posit-dev/py-shiny-templates)
 
 ```bash
+shiny create -g eoda-dev/py-shiny-templates -t fastapi-routes
+
 shiny create -g posit-dev/py-shiny-templates -t map-distance
 ```
 

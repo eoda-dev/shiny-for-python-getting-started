@@ -13,6 +13,7 @@ spec:
       protocol: TCP
       targetPort: 3333
   type: ClusterIP
+  sessionAffinity: ClientIP
 ---
 apiVersion: apps/v1
 kind: Deployment
